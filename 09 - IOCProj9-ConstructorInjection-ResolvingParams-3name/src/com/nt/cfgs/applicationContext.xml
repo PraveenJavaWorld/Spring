@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="cust" class="com.nt.beans.Customer">
+		<constructor-arg name="cno" value="101" />
+		<constructor-arg name="billAmt" value="73.25f" />
+		<constructor-arg name="cname" value="Praveen" />
+		<constructor-arg name="cadd" value="RCPM" />
+	</bean>
+
+
+
+</beans>
