@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="F:/Softwares/Apache Commons Logging/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="F:/Softwares/Oracle Jars/ojdbc8-19.3.0.0.jar"/>
 	<classpathentry kind="lib" path="F:/Softwares/Lombok/lombok-1.18.12.jar"/>
+	<classpathentry kind="lib" path="F:/Softwares/MySql Jars/mysql-connector-java-8.0.21.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

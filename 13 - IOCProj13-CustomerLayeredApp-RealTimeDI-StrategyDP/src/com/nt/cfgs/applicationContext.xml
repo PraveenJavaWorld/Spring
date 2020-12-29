@@ -11,14 +11,27 @@
 	<property name="password" value="1234"/>
 </bean>
 
+<!-- DriverManagerDataSource cfg -->
+<bean id="drdsMySQL" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+	<property name="url" value="jdbc:mysql:///ntsp613"/>
+	<property name="username" value="root"/>
+	<property name="password" value="1234"/>
+</bean>
+
 <!-- cfg DAO class -->
 <bean id="dao" class="com.nt.dao.CustomerDAOImpl">
 	<constructor-arg name="ds" ref="drds"/>
 </bean>
+<!-- cfg DAO class -->
+<bean id="daoMySQL" class="com.nt.dao.MySQLCustomerDAOImpl">
+	<constructor-arg name="ds" ref="drdsMySQL"/>
+</bean>
 
 <!-- cfg Service class -->
 <bean id="service" class="com.nt.service.CustomerMgmtServiceImpl">
-	<constructor-arg name="dao" ref="dao"/>
+	<!-- <constructor-arg name="dao" ref="dao"/> -->
+	<constructor-arg name="dao" ref="daoMySQL"/>
 </bean>
 
 <!-- cfg controller class -->
