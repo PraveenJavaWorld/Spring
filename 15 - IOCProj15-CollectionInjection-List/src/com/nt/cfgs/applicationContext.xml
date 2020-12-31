@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+<!-- Spring Bean cfgs -->
+<bean id="dobDt" class="java.util.Date">
+	<constructor-arg name="year" value="97"/>
+	<constructor-arg name="month" value="02"/>
+	<constructor-arg name="date" value="18"></constructor-arg>
+</bean>
+<bean id="sysDt" class="java.util.Date"/>
+<bean id="coDt" class="java.util.Date">
+	<constructor-arg name="year" value="100"/>
+	<constructor-arg name="month" value="02"/>
+	<constructor-arg name="date" value="18"></constructor-arg>
+</bean>
+
+<bean id="stud" class="com.nt.beans.Student">
+	<property name="marks">
+		<list>
+			<value>90</value>
+			<value>85</value>
+			<value>63</value>
+			<value>35</value>
+		</list>
+	</property>
+	<property name="impDates">
+		<list>
+			<ref bean="dobDt"/>
+			<ref bean="sysDt"/>
+			<ref bean="coDt"/>
+		</list>
+	</property>
+</bean>
+
+</beans>
