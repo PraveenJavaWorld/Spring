@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- Raja Details -->
+<bean id="rajaDob" class="java.util.Date">
+	<property name="year" value="90"/>
+	<property name="month" value="8"/>
+	<property name="date" value="20"/>
+</bean>
+<bean id="rajaDom" class="java.util.Date">
+	<property name="year" value="115"/>
+	<property name="month" value="9"/>
+	<property name="date" value="30"/>
+</bean>
+<bean id="rajaDoj" class="java.util.Date">
+	<property name="year" value="112"/>
+	<property name="month" value="7"/>
+	<property name="date" value="10"/>
+</bean>
+
+<!-- Ramesh Details -->
+<bean id="rameshDob" class="java.util.Date">
+	<property name="year" value="92"/>
+	<property name="month" value="11"/>
+	<property name="date" value="15"/>
+</bean>
+
+<!-- Spring Bean cfg 1 -->
+<bean id="rajaInfo" class="com.nt.beans.PersonalInfo">
+	<constructor-arg name="pname" value="Ramesh"/>
+	<constructor-arg name="address" value="Vizag"/>
+	<constructor-arg name="dob" ref="rajaDob"/>
+	<constructor-arg name="doj" ref="rajaDoj"/>
+	<constructor-arg name="dom" ref="rajaDom"/>
+</bean>
+
+<!-- Spring Bean cfg 2 -->
+<bean id="rameshInfo" class="com.nt.beans.PersonalInfo">
+	<constructor-arg name="pname" value="Raja"/>
+	<constructor-arg name="address" value="Hyderabad"/>
+	<constructor-arg name="dob" ref="rameshDob"/>
+	<constructor-arg><null/></constructor-arg>
+	<constructor-arg><null/></constructor-arg>
+</bean>
+
+</beans>
