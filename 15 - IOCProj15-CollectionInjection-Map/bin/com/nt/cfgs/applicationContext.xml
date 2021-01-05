@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+<!-- Spring Bean cfgs -->
+<bean id="dobDt" class="java.util.Date">
+	<constructor-arg name="year" value="97"/>
+	<constructor-arg name="month" value="02"/>
+	<constructor-arg name="date" value="18"></constructor-arg>
+</bean>
+<bean id="sysDt" class="java.util.Date"/>
+<bean id="coDt" class="java.util.Date">
+	<constructor-arg name="year" value="100"/>
+	<constructor-arg name="month" value="02"/>
+	<constructor-arg name="date" value="18"></constructor-arg>
+</bean>
+
+<bean id="info" class="com.nt.beans.FruitsInfo">
+	<constructor-arg name="fruitsInfo">
+		<map key-type="java.lang.String" value-type="java.lang.String">
+			<entry>
+				<key><value>Mango</value></key><!-- Model 1 -->
+				<value>Yellow</value>
+			</entry>
+			<entry key="Banana" value="Yellow"/><!-- Model 2 -->
+			<entry>
+				<key><value>Grapes</value></key>
+				<value>Green</value>
+			</entry>
+		</map>
+	</constructor-arg>
+	<constructor-arg name="impDates">
+		<map key-type="java.lang.String" value-type="java.uti.Date">
+			<entry>
+				<key><value>DOB</value></key><!-- Model 1 -->
+				<ref bean="dobDt"/>
+			</entry>
+			<entry key="Today" value-ref="sysDt"/><!-- Model 2 -->
+			<entry>
+				<key><value>OpeningDate</value></key>
+				<ref bean="coDt"/>
+			</entry>
+		</map>
+	</constructor-arg>
+</bean>
+
+</beans>
