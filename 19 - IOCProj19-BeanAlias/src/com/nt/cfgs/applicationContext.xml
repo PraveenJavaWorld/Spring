@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- cfg java.util.Date class as Spring Bean -->
+	<bean id="dt" class="java.util.Date"/>
+	
+	<!-- cfg WishMessageGenerator class as Spring Bean -->
+	<bean id="wishMessageGenerator" name="wmg1,wmg2" class="com.nt.beans.WishMessageGenerator">
+		<property name="date" ref="dt"></property><!-- performs setter injection on "date" property with "dt" bean id referred java.util.Date class spring bean obj-->
+	</bean>
+	<alias name="wishMessageGenerator" alias="msg1"/>
+	<alias name="wishMessageGenerator" alias="msg2"/>
+	<alias name="wmg1" alias="msg3"/>
+	<alias name="wmg2" alias="msg4"/>
+
+</beans>
