@@ -1,0 +1,30 @@
+info:
+  per:
+    addr:
+      city: Hyderabad
+      doorNo: 1-2-3/4
+      mobilePrices:
+        Vivo: 28000
+      street: Mythrivanam
+    favFruits:
+      Banana: Yellow
+      Grapes: Green
+      Mango: Yellow
+    id: 1001
+    idCards:
+      aadhar: 987456321
+      passport: 8974563217
+      voter: 852741963
+    marks:
+    - 90
+    - 80
+    - 70
+    name: Praveen
+    nickNames:
+    - Raja
+    - King
+    - Baadshah
+    phoneNumbers:
+    - 1234567891
+    - 9876543219
+    - 9638527419
