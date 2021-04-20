@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.MappingSqlQuery;
+import org.springframework.jdbc.object.SqlUpdate;
 import org.springframework.stereotype.Repository;
 
 import com.nt.model.EmployeeInfo;
@@ -19,14 +20,17 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 
 	private static final String GET_EMP_BY_ID = "SELECT EMPNO,ENAME,JOB,SAL FROM EMP WHERE EMPNO=?";
 	private static final String GET_EMPS_BY_JOB = "SELECT EMPNO,ENAME,JOB,SAL FROM EMP WHERE JOB IN(?,?,?)";
+	private static final String UPDATE_EMPSAL_BY_ID = "UPDATE EMP SET SAL=? WHERE EMPNO=?";
 	
 	private EmployeeSelector1 selector1;
 	private EmployeeSelector2 selector2;
+	private EmployeeUpdator1 updator1;
 	
 	@Autowired
 	public EmployeeDAOImpl(DataSource ds) {
 		selector1 = new EmployeeSelector1(ds, GET_EMP_BY_ID);
 		selector2 = new EmployeeSelector2(ds, GET_EMPS_BY_JOB);
+		updator1 = new EmployeeUpdator1(ds, UPDATE_EMPSAL_BY_ID);
 	}
 	
 	@Override
@@ -41,7 +45,13 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 		return list;
 	}
 	
+	@Override
+	public int updateEmployeeSalaryById(float sal, int id) {
+		int count = updator1.update(sal,id);
+		return count;
+	}
 	
+	// Inner classes for select operations
 	//inner class for only one record
 	private static class EmployeeSelector1 extends MappingSqlQuery<EmployeeInfo>{
 
@@ -91,6 +101,18 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 			}
 			
 		}//inner class 2
+		
+		// Inner classes for non-select operations
+		//inner class 3 for update one record
+		private static class EmployeeUpdator1 extends SqlUpdate{
+			
+			public EmployeeUpdator1(DataSource ds,String query) {
+				super(ds,query);
+				super.declareParameter(new SqlParameter(Types.FLOAT));
+				super.declareParameter(new SqlParameter(Types.INTEGER));
+				super.compile();
+			}
+		}//inner class 3
 
 	
 

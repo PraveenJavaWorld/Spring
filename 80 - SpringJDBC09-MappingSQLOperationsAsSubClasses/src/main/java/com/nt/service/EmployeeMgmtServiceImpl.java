@@ -28,5 +28,13 @@ public class EmployeeMgmtServiceImpl implements IEmployeeMgmtService {
 		List<EmployeeInfo> list = dao.getEmployeesByJob(job1, job2, job3);
 		return list;
 	}
+	
+	//Non-Select Operations
+
+	@Override
+	public String modifyEmployeeSalaryById(float sal, int id) {
+		int count = dao.updateEmployeeSalaryById(sal, id);
+		return count==0?"Salary Not Updated":"Salary Updated";
+	}
 
 }

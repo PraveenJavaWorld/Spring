@@ -41,6 +41,24 @@ public class MappingSQLOperationsTest {
 			dae.printStackTrace();
 		}
 		
+		try {
+			System.out.println(service.modifyEmployeeSalaryById(80000, 2));
+		}
+		catch (DataAccessException dae) {
+			dae.printStackTrace();
+		}
+		
+		try {
+			EmployeeInfo info = service.fetchEmployeeById(2);
+			if(info!=null)
+				System.out.println("Employee Details are :: "+info);
+			else
+				System.out.println("Employee Not Found");
+		}
+		catch (DataAccessException dae) {
+			dae.printStackTrace();
+		}
+		
 		//close container
 		((AbstractApplicationContext) ctx).close();
 
