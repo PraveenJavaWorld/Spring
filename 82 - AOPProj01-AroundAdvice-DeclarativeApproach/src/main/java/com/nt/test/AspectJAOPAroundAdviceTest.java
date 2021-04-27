@@ -17,7 +17,11 @@ public class AspectJAOPAroundAdviceTest {
 		System.out.println(proxy.getClass()+" "+proxy.getClass().getSuperclass());
 		//invoke b.methods
 		System.out.println(proxy.calSimpleInterest(20000, 10, 12));
+		System.out.println("----------------------------------");
+		System.out.println(proxy.calSimpleInterest(20000, 10, 12));
 		System.out.println("=====================");
+		System.out.println(proxy.calCompoundInterest(20000, 10, 12));
+		System.out.println("----------------------------------");
 		System.out.println(proxy.calCompoundInterest(20000, 10, 12));
 		
 		//close container
