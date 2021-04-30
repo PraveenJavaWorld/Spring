@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<!-- target class cfg -->
+<bean id="service" class="com.nt.service.BankServiceImpl"/>
+
+<!-- advice class cfg -->
+<bean id="pmAdvice" class="com.nt.advice.PerformanceMonitoringAdvice"/>
+<bean id="cacheAdvice" class="com.nt.advice.CachingAdvice"/>
+
+<!-- enable AOP cfg -->
+<aop:config>
+	<!-- create pointcut using OGNL Expression -->
+	<aop:pointcut expression="execution(double com.nt.service.IBankService.*(..))" id="ptc"/>
+	<!-- make spring bean class as AspectJAOP class -->
+	<aop:aspect ref="pmAdvice" order="2">
+		<aop:around method="performance" pointcut-ref="ptc"/>
+	</aop:aspect>
+	<!-- make second spring bean class as AspectJAOP class -->
+	<aop:aspect ref="cacheAdvice" order="1">
+		<aop:around method="caching" pointcut-ref="ptc"/>
+	</aop:aspect>
+</aop:config>
+
+</beans>
