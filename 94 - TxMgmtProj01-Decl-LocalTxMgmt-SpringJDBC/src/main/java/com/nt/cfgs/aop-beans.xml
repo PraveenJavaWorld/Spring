@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+<!-- cfg DataSourceTransactionManager -->
+<bean id="dsTxMgmr" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<constructor-arg name="dataSource" ref="hikari"/>
+</bean>
+
+<!-- cfg dsTxMgmr as TxAdvice -->
+<tx:advice id="txAdvice" transaction-manager="dsTxMgmr">
+	<tx:attributes>
+		<tx:method name="transferMoney" propagation="REQUIRED"/>
+	</tx:attributes>
+</tx:advice>
+
+<!-- Enable AspectJAOP -->
+<aop:config>
+	<aop:pointcut expression="execution(String com.nt.service.BankAccountMgmtServiceImpl.transferMone(..))" id="ptc"/>
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="ptc"/> <!-- makes Tx Advice as AspectJAOP Advice -->
+</aop:config>
+
+</beans>
